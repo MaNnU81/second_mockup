@@ -1,0 +1,53 @@
+.shell {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 60px;
+  height: 700px;
+  overflow: hidden;
+  background-color: rgba(0, 92, 157);  
+}
+
+::ng-deep .sidebar .mat-drawer-inner-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.sidebar__top,
+.sidebar__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar__bottom {
+  margin-top: auto;
+  padding-top: 12px;
+ 
+}
+
+.nav {
+  width: 100%;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 0 0 10px 0;
+  
+}
+
+.nav__icon {
+  margin-right: 0;
+}
+
+.nav__text {
+  display: none;
+}
+
+.content {
+  height: 100%;
+  overflow: auto;
+  padding: 16px;
+}

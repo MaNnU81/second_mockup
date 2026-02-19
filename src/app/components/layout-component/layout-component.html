@@ -1,0 +1,54 @@
+<mat-sidenav-container class="shell">
+  <mat-sidenav mode="side" opened class="sidebar">
+
+    <div class="sidebar__top">
+      <a mat-button class="nav" routerLink="/home" routerLinkActive="is-active">
+        <mat-icon class="nav__icon">home</mat-icon>
+        
+      </a>
+
+      <a mat-button class="nav" routerLink="/book" routerLinkActive="is-active">
+        <mat-icon class="nav__icon">perm_contact_calendar</mat-icon>
+        
+      </a>
+
+      <a mat-button class="nav" routerLink="/buildings" routerLinkActive="is-active">
+        <mat-icon class="nav__icon">account_balance</mat-icon>
+      </a>
+            <a mat-button class="nav" routerLink="/buildings" routerLinkActive="is-active">
+        <mat-icon class="nav__icon">account_balance</mat-icon>
+      </a>
+            <a mat-button class="nav" routerLink="/buildings" routerLinkActive="is-active">
+        <mat-icon class="nav__icon">account_balance</mat-icon>
+      </a>
+            <a mat-button class="nav" routerLink="/buildings" routerLinkActive="is-active">
+        <mat-icon class="nav__icon">account_balance</mat-icon>
+      </a>
+            <a mat-button class="nav" routerLink="/buildings" routerLinkActive="is-active">
+        <mat-icon class="nav__icon">account_balance</mat-icon>
+      </a>
+    </div>
+
+    <div class="sidebar__bottom">
+      <a mat-button class="nav" routerLink="/quotation_search" routerLinkActive="is-active">
+        <mat-icon class="nav__icon">local_library</mat-icon>
+        
+      </a>
+
+      <a mat-button class="nav" routerLink="/inbox" routerLinkActive="is-active">
+        <mat-icon class="nav__icon">inventory_2</mat-icon>
+        
+      </a>
+
+      <a mat-button class="nav" routerLink="/settings" routerLinkActive="is-active">
+        <mat-icon class="nav__icon">settings</mat-icon>
+        
+      </a>
+    </div>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
