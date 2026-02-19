@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataStateChangeEvent, KENDO_GRID } from '@progress/kendo-angular-grid';
-import { MockRequest } from '../../models/mock-request';
 
 
-import { DataResult, State } from '@progress/kendo-data-query';
+
+import { DataResult, SortDescriptor, State } from '@progress/kendo-data-query';
 
 
 

@@ -31,7 +31,7 @@ export class QuotationSearchComponent {
   public state: State = {
     skip: 0,
     take: 5,
-    sort: [],
+    sort: [{ field: 'dateRequest', dir: 'desc' }],
     filter: { logic: 'and', filters: [] },
   };
 

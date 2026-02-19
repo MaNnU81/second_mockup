@@ -4,7 +4,8 @@
 </div>
 
 <kendo-grid   [data]="data"
-  [sortable]="true"
+  [sortable]="{ allowUnsort: true, mode: 'single' }"
+  [sort]="state.sort"
   [pageable]="true"
   [skip]="state.skip"
   [pageSize]="state.take"
