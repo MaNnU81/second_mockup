@@ -1,0 +1,59 @@
+<h2>Quotation Search</h2>
+<kendo-expansionpanel
+  title="Search Parameters"
+  [expanded]="searchPanelExpanded"
+  (action)="searchPanelExpanded = !searchPanelExpanded"
+  class="search__container"
+>
+  <form kendoForm [formGroup]="searchForm" [cols]="4" class="search-form">
+
+    <!-- ROW 1 (4 campi) -->
+    <kendo-formfield>
+      <kendo-label text="Date Request"></kendo-label>
+      <kendo-datepicker formControlName="dateRequest" format="dd/MM/yyyy"></kendo-datepicker>
+    </kendo-formfield>
+
+    <kendo-formfield>
+      <kendo-label text="Id Request"></kendo-label>
+      <kendo-numerictextbox formControlName="idRequest"
+        [decimals]="0"
+        format="0"
+        [spinners]="false"></kendo-numerictextbox>
+    </kendo-formfield>
+
+    <kendo-formfield>
+      <kendo-label text="Id Portfolio"></kendo-label>
+      <kendo-textbox formControlName="idPortfolio"></kendo-textbox>
+    </kendo-formfield>
+
+    <kendo-formfield>
+      <kendo-label text="Client"></kendo-label>
+      <kendo-textbox formControlName="client"></kendo-textbox>
+    </kendo-formfield>
+
+    <!-- ROW 2 (2 campi a sinistra) -->
+    <kendo-formfield>
+      <kendo-label text="Debtor"></kendo-label>
+      <kendo-textbox formControlName="debtor"></kendo-textbox>
+    </kendo-formfield>
+
+    <kendo-formfield>
+      <kendo-label text="Status"></kendo-label>
+      <kendo-textbox formControlName="status"></kendo-textbox>
+    </kendo-formfield>
+
+    <!-- Spacer: occupa le 2 colonne a destra della riga 2 -->
+   
+
+    <!-- ROW 3: bottoni su tutta la riga -->
+    <kendo-form-separator [colSpan]="2"></kendo-form-separator>
+
+    <!-- ROW 3: bottoni su tutta la riga -->
+    <div class="actions" kendoFormFieldSpan="4">
+    <button kendoButton themeColor="primary" type="button" (click)="onSearch()">Search</button>
+    <button kendoButton fillMode="flat" type="button" (click)="onClear()">Clear</button>
+    </div>
+  </form>
+</kendo-expansionpanel>
+
+

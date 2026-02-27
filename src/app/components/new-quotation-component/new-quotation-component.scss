@@ -1,0 +1,21 @@
+.panel-title {
+  margin: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;  
+  gap: 6px;                
+}
+
+.w-200 {
+  width: 200px;
+  max-width: 200px;
+}
+
+.actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: left;
+  gap: 12px;
+}

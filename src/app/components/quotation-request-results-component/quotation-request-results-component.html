@@ -1,0 +1,31 @@
+
+<div class="results-header">
+    Results ({{ data.total }})
+</div>
+
+<kendo-grid   [data]="data"
+  [sortable]="{ allowUnsort: true, mode: 'single' }"
+  [sort]="state.sort"
+  [pageable]="true"
+  [skip]="state.skip"
+  [pageSize]="state.take"
+  (dataStateChange)="stateChange.emit($event)"
+  [height]="400">
+    <kendo-grid-column field="dateRequest" title="Date Request" [width]="70"  format="{0:dd/MM/yyyy}"></kendo-grid-column>
+    <kendo-grid-column field="idRequest" title="Id Request" [width]="70"></kendo-grid-column>
+    <kendo-grid-column field="idPortfolio" title="Id Portfolio" [width]="150"></kendo-grid-column>
+    <kendo-grid-column field="client" title="Client" [width]="200"></kendo-grid-column>
+    <kendo-grid-column field="debtor" title="Debtor" [width]="200"></kendo-grid-column>
+    
+    
+    <kendo-grid-column field="status" title="Status" [width]="150">
+  <ng-template kendoGridCellTemplate let-item>
+    <kendo-chip
+      [themeColor]="getStatusColor(item.status)"
+      [fillMode]="'solid'">
+      {{ item.status }}
+    </kendo-chip>
+  </ng-template>
+</kendo-grid-column>
+
+</kendo-grid>

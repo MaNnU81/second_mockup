@@ -1,0 +1,11 @@
+
+<app-quotation-request-filters-component
+    (search)="onSearch($event)"
+    (clear)="onClear()">
+</app-quotation-request-filters-component>
+
+<app-quotation-request-results-component
+    [data]="gridData"
+    [state]="state"
+    (stateChange)="onStateChange($event)">
+</app-quotation-request-results-component>

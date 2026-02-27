@@ -1,16 +1,17 @@
-import { Component, ViewEncapsulation  } from '@angular/core';
-import { DrawerItem, DrawerSelectEvent, KENDO_LAYOUT, } from "@progress/kendo-angular-layout";
+import { Component,   } from '@angular/core';
+import {  DrawerSelectEvent, KENDO_LAYOUT, } from "@progress/kendo-angular-layout";
 import { KENDO_BUTTONS } from "@progress/kendo-angular-buttons";
 import { KENDO_ICONS } from '@progress/kendo-angular-icons';
-import { RouterOutlet } from "@angular/router";
+
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterOutlet, RouterLink, RouterLinkActive  } from "@angular/router";
 
 @Component({
   selector: 'app-layout-component',
-  imports: [KENDO_ICONS, KENDO_LAYOUT, KENDO_BUTTONS, RouterOutlet, MatSidenavModule, MatButtonModule, MatIconModule],
+  imports: [KENDO_ICONS, KENDO_LAYOUT, KENDO_BUTTONS, MatSidenavModule, MatButtonModule, MatIconModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './layout-component.html',
   styleUrl: './layout-component.scss',
 })

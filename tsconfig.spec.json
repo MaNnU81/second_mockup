@@ -10,5 +10,5 @@
   },
   "include": [
     "src/**/*.ts"
-  ]
+, "src/app/components/quotation-request-shell-component/quotation-request-shell-component.spec.ts"  ]
 }
