@@ -1,6 +1,9 @@
+<h3>New quotation's</h3>
+
+
 <form [formGroup]="form">
-    <h3 class="panel-title">{{ panel.title }}</h3>
-    <kendo-gridlayout [cols]="[{ width: 200 }, { width: 200 }, { width: 200 }, { width: 200 }]"
+    <h4 class="panel-title">{{ panel.title }}</h4>
+    <kendo-gridlayout class="wrapper" [cols]="[{ width: 200 }, { width: 200 }, { width: 200 }, { width: 200 }]"
         [gap]="{ rows: 20, cols: 16 }">
 
         @for (field of panel.fields; track field.key) {
@@ -29,7 +32,7 @@
                 }
 
                 @case ('number') {
-                <kendo-numerictextbox [min]="1" [step]="1" [formControlName]="field.key">
+                <kendo-numerictextbox [min]="1" [step]="1" [formControlName]="field.key" [decimals]="0" format="0" [spinners]="false">
                 </kendo-numerictextbox>
                 }
                 }
