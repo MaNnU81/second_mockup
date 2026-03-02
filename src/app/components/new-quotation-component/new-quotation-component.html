@@ -1,53 +1,98 @@
 <h3>New quotation's</h3>
 
-
 <form [formGroup]="form">
+  @for (panel of panels; track panel.id) {
     <h4 class="panel-title">{{ panel.title }}</h4>
-    <kendo-gridlayout class="wrapper" [cols]="[{ width: 200 }, { width: 200 }, { width: 200 }, { width: 200 }]"
-        [gap]="{ rows: 20, cols: 16 }">
 
-        @for (field of panel.fields; track field.key) {
-        <kendo-gridlayout-item [colSpan]="field.colSpan">
+    <kendo-gridlayout
+      class="wrapper"
+      [cols]="[{ width: 200 }, { width: 200 }, { width: 200 }, { width: 200 }]"
+      [gap]="{ rows: 20, cols: 16 }">
+
+      @for (row of panel.rows; track $index) {
+        @for (field of row; track field.key) {
+          <kendo-gridlayout-item [colSpan]="field.colSpan">
             <div class="field">
-                <label class="k-label" [for]="field.key">{{ field.label }}</label>
+              <label class="k-label" [for]="field.key">{{ field.label }}</label>
 
-                @switch (field.type) {
+              @switch (field.type) {
                 @case ('dropdown') {
-                <kendo-dropdownlist [id]="field.key" [data]="optionsFor(field)" textField="text" valueField="value"
-                    [valuePrimitive]="true" [formControlName]="field.key"
-                    [ngClass]="{ 'w-200': field.key === 'country' }">
-                </kendo-dropdownlist>
+                  <kendo-dropdownlist
+                    [id]="field.key"
+                    [data]="optionsFor(field)"
+                    textField="text"
+                    valueField="value"
+                    [valuePrimitive]="true"
+                    [formControlName]="field.key"
+                    [class.w-200]="field.key === 'country'">
+                  </kendo-dropdownlist>
                 }
 
                 @case ('multiselect') {
-                <kendo-multiselect [id]="field.key" [data]="optionsFor(field)" textField="text" valueField="value"
-                    [valuePrimitive]="true" [formControlName]="field.key">
-                </kendo-multiselect>
+                  <kendo-multiselect
+                    [id]="field.key"
+                    [data]="optionsFor(field)"
+                    textField="text"
+                    valueField="value"
+                    [valuePrimitive]="true"
+                    [formControlName]="field.key">
+                  </kendo-multiselect>
                 }
 
                 @case ('dayOfMonth') {
-                <kendo-dropdownlist [id]="field.key" [data]="optionsFor(field)" textField="text" valueField="value"
-                    [valuePrimitive]="true" [formControlName]="field.key">
-                </kendo-dropdownlist>
+                  <kendo-dropdownlist
+                    [id]="field.key"
+                    [data]="optionsFor(field)"
+                    textField="text"
+                    valueField="value"
+                    [valuePrimitive]="true"
+                    [formControlName]="field.key">
+                  </kendo-dropdownlist>
                 }
 
                 @case ('number') {
-                <kendo-numerictextbox [min]="1" [step]="1" [formControlName]="field.key" [decimals]="0" format="0" [spinners]="false">
-                </kendo-numerictextbox>
+                  <kendo-numerictextbox
+                    [min]="1"
+                    [step]="1"
+                    [formControlName]="field.key"
+                    [decimals]="0"
+                    format="0"
+                    [spinners]="false">
+                  </kendo-numerictextbox>
                 }
+
+                @case ('text') {
+                  <input kendoTextBox
+                    [id]="field.key"
+                    [formControlName]="field.key"/>
                 }
+
+                @case ('checkbox') {
+                  <kendo-checkbox
+                    [id]="field.key"
+                    [formControlName]="field.key">
+                  </kendo-checkbox>
+                }
+
+                @case ('spacer') {
+                    <div class="spacer"></div>
+                }
+
+              }
             </div>
-        </kendo-gridlayout-item>
+          </kendo-gridlayout-item>
         }
+      }
     </kendo-gridlayout>
+  }
 
-    <div class="actions">
-        <button kendoButton type="button" (click)="onReset()">
-            Reset
-        </button>
+  <div class="actions">
+    <button kendoButton type="button" (click)="onReset()">
+      Reset
+    </button>
 
-        <button kendoButton type="button" (click)="onSubmit()" [disabled]="form.invalid">
-            Log form data
-        </button>
-    </div>
+    <button kendoButton type="button" (click)="onSubmit()" [disabled]="form.invalid">
+      Log form data
+    </button>
+  </div>
 </form>

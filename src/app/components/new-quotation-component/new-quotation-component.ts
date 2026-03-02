@@ -1,12 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Form, FormControl, FormGroup, ReactiveFormsModule  } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule  } from '@angular/forms';
 import { KENDO_LAYOUT } from "@progress/kendo-angular-layout";
-import { buildProductDataPanel, CountryCode, DEFAULT_BY_COUNTRY, FieldConfig, OptionItem } from './new-quotation-component-config';
+import { buildProductDataPanel, buildQuotationPanels, CountryCode, DEFAULT_BY_COUNTRY, FieldConfig, OptionItem, PanelConfig } from './new-quotation-component-config';
 import { KENDO_DROPDOWNS } from "@progress/kendo-angular-dropdowns";
 import { KENDO_LABELS } from "@progress/kendo-angular-label";
 import { KENDO_INPUTS } from "@progress/kendo-angular-inputs";
 import { KENDO_BUTTONS } from '@progress/kendo-angular-buttons';
-import { CommonModule } from '@angular/common';
 
 
 
@@ -20,31 +20,50 @@ type AnyformGroup = FormGroup<Record<string,  FormControl<any>>>;
   styleUrl: './new-quotation-component.scss',
 })
 export class NewQuotationComponent {
+  panels = buildQuotationPanels(null);
+  private allFields: readonly FieldConfig[] = this.panels.flatMap(panel => panel.rows.flatMap(row => row));
 
-  panel = buildProductDataPanel(null);  //fa partire form da blank, senza country selezionato
-  form: AnyformGroup = this.buildForm(this.panel.fields);
+  
+  public form: AnyformGroup = this.buildForm(this.allFields);
+  
+  public dayOptions: OptionItem<number>[] = Array.from({ length: 31 }, (_, i) => {
+  const day = i + 1;
+  return { text: String(day), value: day };
+  });
+  
+  private optionsCache = new Map<string, OptionItem[]>();
 
   constructor() {
+    this.registerCountryListener();
+  }
+
+  private registerCountryListener(): void {
     this.form.get('country')!.valueChanges.subscribe((country: CountryCode | null) => {
       const defaults = country ? DEFAULT_BY_COUNTRY[country] : null;
 
       this.form.patchValue({
-        paymentDay: defaults?.paymentDay ?? null,
-        aging: defaults?.aging ?? null,
+        paymentDay: defaults ?.paymentDay ?? null,
+        aging: defaults ?.aging ?? null,
       });
-    
-   }); 
+    });
   }
 
+
+  
   private buildForm(fields: readonly FieldConfig[]): AnyformGroup {
     const controls: Record<string, FormControl<any>> = {};
+
     for (const field of fields) {
-      controls[field.key] = new FormControl(field.defaultValue,  { validators: field.validators ? [...field.validators] : [] });
+      controls[field.key] = new FormControl(field.defaultValue,  {validators: field.validators ? [...field.validators] : [],
+
+      });
     }
-        return new FormGroup(controls);
+    return new FormGroup(controls);
   }
 
-  private optionsCache = new Map<string, OptionItem[]>();
+
+  
+
   public optionsFor(field: FieldConfig): OptionItem[] {
     const cached = this.optionsCache.get(field.key);
     if (cached) return cached;
@@ -59,11 +78,8 @@ export class NewQuotationComponent {
     return source;
   }
 
-  public dayOptions: OptionItem<number>[] = Array.from({ length: 31 }, (_, i) => {
-    const day = i + 1;
-    return { text: String(day), value: day };
-  });
-  ;
+
+  
 
 
   public onSubmit(): void {
@@ -73,7 +89,7 @@ export class NewQuotationComponent {
 
   public onReset(): void {
   this.form.reset();
-  
+  this.optionsCache.clear();
 }
 
 }
