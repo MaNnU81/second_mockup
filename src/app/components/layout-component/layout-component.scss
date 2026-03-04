@@ -35,12 +35,12 @@
   margin-top: auto;
 }
 
-.sidebar__bottom .nav:last-child {
- margin-bottom: 20px;
+.nav--first {
+  margin-top: 20px   ;
 }
 
-.sidebar__top .nav:first-child {
-  margin-top: 20px   ;
+.nav--last {
+ margin-bottom: 20px;
 }
 
 .nav {

@@ -2,9 +2,10 @@
   <aside class="sidebar" aria-label="Main navigation">
 
     <div class="sidebar__top">
-      @for (item of navTop; track item.id) {
+      @for (item of navTop; track item.id; let first = $first) {
         <a
           class="nav"
+          [class.nav--first]="first"
           [routerLink]="item.route"
           routerLinkActive="is-active"
           [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
@@ -16,9 +17,10 @@
     </div>
 
     <div class="sidebar__bottom">
-      @for (item of navBottom; track item.id) {
+      @for (item of navBottom; track item.id; let last = $last) {
         <a
           class="nav"
+          [class.nav--last]="last"
           [routerLink]="item.route"
           routerLinkActive="is-active"
           [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
