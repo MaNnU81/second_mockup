@@ -1,54 +1,37 @@
-<mat-sidenav-container class="shell">
-  <mat-sidenav mode="side" opened class="sidebar">
+<div class="shell">
+  <aside class="sidebar" aria-label="Main navigation">
 
     <div class="sidebar__top">
-      <a mat-button class="nav" routerLink="/home" routerLinkActive="is-active">
-        <mat-icon class="nav__icon">home</mat-icon>
-        
-      </a>
-
-      <a mat-button class="nav" routerLink="/upload" routerLinkActive="is-active">
-        <mat-icon class="nav__icon">perm_contact_calendar</mat-icon>
-        
-      </a>
-
-      <a mat-button class="nav" routerLink="/newquotation" routerLinkActive="is-active">
-        <mat-icon class="nav__icon">add_circle</mat-icon>
-      </a>
-            <a mat-button class="nav" routerLink="/buildings" routerLinkActive="is-active">
-        <mat-icon class="nav__icon">account_balance</mat-icon>
-      </a>
-            <a mat-button class="nav" routerLink="/buildings" routerLinkActive="is-active">
-        <mat-icon class="nav__icon">account_balance</mat-icon>
-      </a>
-            <a mat-button class="nav" routerLink="/buildings" routerLinkActive="is-active">
-        <mat-icon class="nav__icon">account_balance</mat-icon>
-      </a>
-            <a mat-button class="nav" routerLink="/buildings" routerLinkActive="is-active">
-        <mat-icon class="nav__icon">account_balance</mat-icon>
-      </a>
+      @for (item of navTop; track item.id) {
+        <a
+          class="nav"
+          [routerLink]="item.route"
+          routerLinkActive="is-active"
+          [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
+          [attr.aria-label]="item.ariaLabel"
+        >
+          <kendo-svgicon class="icon-item" [icon]="item.icon" size="large"></kendo-svgicon>
+        </a>
+      }
     </div>
 
     <div class="sidebar__bottom">
-      <a mat-button class="nav" routerLink="/quotation_search" routerLinkActive="is-active">
-        <mat-icon class="nav__icon">local_library</mat-icon>
-        
-      </a>
-
-      <a mat-button class="nav" routerLink="/inbox" routerLinkActive="is-active">
-        <mat-icon class="nav__icon">inventory_2</mat-icon>
-        
-      </a>
-
-      <a mat-button class="nav" routerLink="/settings" routerLinkActive="is-active">
-        <mat-icon class="nav__icon">settings</mat-icon>
-        
-      </a>
+      @for (item of navBottom; track item.id) {
+        <a
+          class="nav"
+          [routerLink]="item.route"
+          routerLinkActive="is-active"
+          [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
+          [attr.aria-label]="item.ariaLabel"
+        >
+          <kendo-svgicon class="icon-item" [icon]="item.icon" size="large"></kendo-svgicon>
+        </a>
+      }
     </div>
 
-  </mat-sidenav>
+  </aside>
 
-  <mat-sidenav-content class="content">
-    <ng-content><router-outlet></router-outlet></ng-content> 
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

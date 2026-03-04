@@ -324,7 +324,7 @@ export function buildBrokerPanel(selectedCountry: CountryCode | null): PanelConf
   return {
     id: 'brokerData',
     title: 'Broker Data',
-    rows: [[brokerName1, brokerCode1, commission1, spacer()],
+    rows: [[brokerName1, brokerCode1, spacer(2)],
            [brokerName2, brokerCode2, commission2, spacer()], 
            [brokerName3, brokerCode3, commission3, spacer()]],
   };
